@@ -14,3 +14,6 @@ A responsive car showcase website built using HTML, CSS, JavaScript, and Bootstr
 ## Pages
 - index.html — Homepage and vehicle gallery
 - contact.html — Contact form
+
+## Live Website
+[View Car Showcase](https://musasid7-max.github.io/lab-6/)
