@@ -43,3 +43,11 @@ The website was tested on desktop and mobile screen sizes.
 ## Technologies Used
 
 HTML5, CSS3, Bootstrap, and JavaScript.
+
+## Credits
+
+Created for CCT360 Lab 6.
+
+This project uses Bootstrap for responsive design and JavaScript for interactive features.
+
+Vehicle images are stored locally in the images folder.
