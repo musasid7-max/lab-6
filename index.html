@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Car Showcase</title>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Mobile navigation */
+    .navbar .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-toggler {
+      display: none;
+    }
+
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+    }
+
+    @media (max-width: 767px) {
+      .navbar-toggler {
+        display: block;
+      }
+
+      #mobileMenu {
+        display: none;
+        width: 100%;
+        flex-basis: 100%;
+      }
+
+      #mobileMenu.show {
+        display: block;
+      }
+
+      .navbar-nav {
+        flex-direction: column;
+        gap: 5px;
+        padding: 12px 0;
+      }
+    }
+
+    /* Gallery layout */
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    @media (max-width: 991px) {
+      .car-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 575px) {
+      .car-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .car-grid .card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .car-grid .card-img-top {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Quick View popup */
+    .car-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1055;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 20px;
+    }
+
+    .car-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .car-modal .modal-dialog {
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .car-modal .modal-content {
+      background: #20242b;
+      color: white;
+      border: 1px solid #555;
+      border-radius: 12px;
+    }
+
+    .car-modal .modal-header,
+    .car-modal .modal-footer {
+      border-color: #555;
+    }
+
+    .car-modal .btn-close {
+      filter: invert(1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar md:navbar-expand bg-1">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Car Showcase</a>
+
+        <button class="navbar-toggler" type="button"
+          id="menuButton"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+          aria-label="Open navigation menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="mobileMenu">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link" href="#gallery">Gallery</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-5">
+
+    <!-- ORIGINAL CAROUSEL -->
+    <section aria-label="Featured cars" class="mb-4">
+      <div id="featuredCars" class="carousel slide">
+
+        <div class="carousel-inner rounded-5">
+          <div class="carousel-item active">
+            <img src="images/sedan.jpg" class="d-block w-100"
+              alt="Honda Civic sedan driving on a road">
+          </div>
+
+          <div class="carousel-item">
+            <img src="images/suv.jpg" class="d-block w-100"
+              alt="SUV driving on a road">
+          </div>
+
+          <div class="carousel-item">
+            <img src="images/sportcar.jpg" class="d-block w-100"
+              alt="Sports car exterior">
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="carousel-control-prev" type="button"
+            data-bs-target="#featuredCars"
+            data-bs-slide="prev"
+            aria-label="Previous slide">
+            <span aria-hidden="true">❮</span>
+          </button>
+
+          <button class="carousel-control-next" type="button"
+            data-bs-target="#featuredCars"
+            data-bs-slide="next"
+            aria-label="Next slide">
+            <span aria-hidden="true">❯</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <h1>Welcome to Car Showcase</h1>
+    <p>Explore a collection of cars, from everyday favourites to exciting performance models.</p>
+
+    <!-- CAR GALLERY -->
+    <section id="gallery" class="py-4">
+      <h2>Explore Our Cars</h2>
+      <p>Discover different vehicles and what makes each one special.</p>
+
+      <div class="car-grid mt-4">
+
+        <!-- Car 1 -->
+        <div class="card h-100">
+          <img src="images/sedan.jpg" class="card-img-top" alt="Honda Civic">
+          <div class="card-body">
+            <h3 class="card-title h5">Honda Civic</h3>
+            <p class="card-text">A reliable and fuel-efficient sedan for everyday driving.</p>
+            <details>
+              <summary>More Details</summary>
+              <p>Comfortable interior, excellent fuel economy, and practical design.</p>
+            </details>
+            <button class="btn btn-primary mt-3" type="button"
+              onclick="openCarModal('carModal-civic')">
+              Quick View
+            </button>
+          </div>
+        </div>
+
+        <!-- Car 2 -->
+        <div class="card h-100">
+          <img src="images/sedan.jpg" class="card-img-top" alt="Toyota Corolla">
+          <div class="card-body">
+            <h3 class="card-title h5">Toyota Corolla</h3>
+            <p class="card-text">An affordable sedan known for its long-term reliability.</p>
+            <details>
+              <summary>More Details</summary>
+              <p>Low maintenance costs, comfortable seating, and easy handling.</p>
+            </details>
+            <button class="btn btn-primary mt-3" type="button"
+              onclick="openCarModal('carModal-corolla')">
+              Quick View
+            </button>
+          </div>
+        </div>
+
+        <!-- Car 3 -->
+        <div class="card h-100">
+          <img src="images/suv.jpg" class="card-img-top" alt="Honda CR-V">
+          <div class="card-body">
+            <h3 class="card-title h5">Honda CR-V</h3>
+            <p class="card-text">A spacious SUV suitable for families and road trips.</p>
+            <details>
+              <summary>More Details</summary>
+              <p>Flexible cargo space, comfortable seats, and a smooth ride.</p>
+            </details>
+            <button class="btn btn-primary mt-3" type="button"
+              onclick="openCarModal('carModal-crv')">
+              Quick View
+            </button>
+          </div>
+        </div>
+
+        <!-- Car 4 -->
+        <div class="card h-100">
+          <img src="images/suv.jpg" class="card-img-top" alt="Toyota RAV4">
+          <div class="card-body">
+            <h3 class="card-title h5">Toyota RAV4</h3>
+            <p class="card-text">A versatile SUV designed for city and highway driving.</p>
+            <details>
+              <summary>More Details</summary>
+              <p>Practical storage, good visibility, and everyday convenience.</p>
+            </details>
+            <button class="btn btn-primary mt-3" type="button"
+              onclick="openCarModal('carModal-rav4')">
+              Quick View
+            </button>
+          </div>
+        </div>
+
+        <!-- Car 5 -->
+        <div class="card h-100">
+          <img src="images/sportcar.jpg" class="card-img-top" alt="Ford Mustang">
+          <div class="card-body">
+            <h3 class="card-title h5">Ford Mustang</h3>
+            <p class="card-text">A sporty car with bold styling and exciting performance.</p>
+            <details>
+              <summary>More Details</summary>
+              <p>Powerful acceleration, sporty handling, and iconic design.</p>
+            </details>
+            <button class="btn btn-primary mt-3" type="button"
+              onclick="openCarModal('carModal-mustang')">
+              Quick View
+            </button>
+          </div>
+        </div>
+
+        <!-- Car 6 -->
+        <div class="card h-100">
+          <img src="images/sportcar.jpg" class="card-img-top" alt="Chevrolet Corvette">
+          <div class="card-body">
+            <h3 class="card-title h5">Chevrolet Corvette</h3>
+            <p class="card-text">A high-performance sports car built for driving excitement.</p>
+            <details>
+              <summary>More Details</summary>
+              <p>Aerodynamic styling, responsive handling, and impressive performance.</p>
+            </details>
+            <button class="btn btn-primary mt-3" type="button"
+              onclick="openCarModal('carModal-corvette')">
+              Quick View
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SIX UNIQUE QUICK VIEW DIALOGS -->
+    <div id="carModal-civic" class="car-modal" role="dialog"
+      aria-modal="true" aria-labelledby="carModalTitle-civic" aria-hidden="true" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="carModalTitle-civic">Honda Civic</h2>
+            <button type="button" class="btn-close" onclick="closeCarModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">A practical sedan with great fuel economy.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeCarModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="carModal-corolla" class="car-modal" role="dialog"
+      aria-modal="true" aria-labelledby="carModalTitle-corolla" aria-hidden="true" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="carModalTitle-corolla">Toyota Corolla</h2>
+            <button type="button" class="btn-close" onclick="closeCarModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">A dependable sedan designed for daily commuting.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeCarModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="carModal-crv" class="car-modal" role="dialog"
+      aria-modal="true" aria-labelledby="carModalTitle-crv" aria-hidden="true" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="carModalTitle-crv">Honda CR-V</h2>
+            <button type="button" class="btn-close" onclick="closeCarModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">A versatile SUV with plenty of passenger and cargo space.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeCarModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="carModal-rav4" class="car-modal" role="dialog"
+      aria-modal="true" aria-labelledby="carModalTitle-rav4" aria-hidden="true" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="carModalTitle-rav4">Toyota RAV4</h2>
+            <button type="button" class="btn-close" onclick="closeCarModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">A practical SUV for commuting and weekend adventures.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeCarModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="carModal-mustang" class="car-modal" role="dialog"
+      aria-modal="true" aria-labelledby="carModalTitle-mustang" aria-hidden="true" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="carModalTitle-mustang">Ford Mustang</h2>
+            <button type="button" class="btn-close" onclick="closeCarModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">A performance-focused sports car with iconic styling.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeCarModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="carModal-corvette" class="car-modal" role="dialog"
+      aria-modal="true" aria-labelledby="carModalTitle-corvette" aria-hidden="true" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="carModalTitle-corvette">Chevrolet Corvette</h2>
+            <button type="button" class="btn-close" onclick="closeCarModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">A high-performance sports car with a striking design.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeCarModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="container py-4">
+    <p>&copy; 2026 Car Showcase. Created for CCT360 Lab 6.</p>
+  </footer>
+
+  <!-- BOOTSTRAP FOR ORIGINAL CAROUSEL -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Mobile navigation
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuButton.addEventListener("click", function() {
+      const isOpen = mobileMenu.classList.toggle("show");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Six independent Quick View dialogs
+    let activeCarModal = null;
+    let previousFocus = null;
+
+    function openCarModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      previousFocus = document.activeElement;
+      activeCarModal = modal;
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      modal.querySelector(".btn-close").focus();
+    }
+
+    function closeCarModal() {
+      if (!activeCarModal) return;
+      activeCarModal.classList.remove("show");
+      activeCarModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      activeCarModal = null;
+      if (previousFocus) previousFocus.focus();
+    }
+
+    document.querySelectorAll(".car-modal").forEach(function(modal) {
+      modal.addEventListener("click", function(event) {
+        if (event.target === modal) closeCarModal();
+      });
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape" && activeCarModal) closeCarModal();
+      if (event.key === "Tab" && activeCarModal) {
+        const buttons = Array.from(activeCarModal.querySelectorAll("button"));
+        const first = buttons[0];
+        const last = buttons[buttons.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
+        }
+      }
+    });
+
+    // Fix carousel arrows without relying on Bootstrap
+    const carouselSlides = document.querySelectorAll(
+      "#featuredCars .carousel-item"
+    );
+
+    let currentSlide = Array.from(carouselSlides).findIndex(
+      slide => slide.classList.contains("active")
+    );
+
+    if (currentSlide === -1) currentSlide = 0;
+
+    function changeSlide(direction) {
+      carouselSlides[currentSlide].classList.remove("active");
+
+      currentSlide =
+        (currentSlide + direction + carouselSlides.length)
+        % carouselSlides.length;
+
+      carouselSlides[currentSlide].classList.add("active");
+    }
+
+    document.querySelector(
+      "#featuredCars .carousel-control-prev"
+    ).addEventListener("click", function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      changeSlide(-1);
+    }, true);
+
+    document.querySelector(
+      "#featuredCars .carousel-control-next"
+    ).addEventListener("click", function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      changeSlide(1);
+    }, true);
+
+  </script>
+
+</body>
+</html>

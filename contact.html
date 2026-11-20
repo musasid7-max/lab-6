@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Car Showcase</title>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .navbar .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-toggler {
+      display: none;
+    }
+
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+    }
+
+    @media (max-width: 767px) {
+      .navbar-toggler {
+        display: block;
+      }
+
+      #mobileMenu {
+        display: none;
+        flex-basis: 100%;
+        width: 100%;
+      }
+
+      #mobileMenu.show {
+        display: block;
+      }
+
+      .navbar-nav {
+        flex-direction: column;
+        gap: 5px;
+        padding: 12px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+      <div class="container">
+
+        <a class="navbar-brand" href="index.html">
+          Car Showcase
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          id="menuButton"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="mobileMenu">
+          <div class="navbar-nav">
+
+            <a class="nav-link" href="index.html">
+              Home
+            </a>
+
+            <a class="nav-link" href="index.html#gallery">
+              Gallery
+            </a>
+
+            <a class="nav-link active"
+               aria-current="page"
+               href="contact.html">
+              Contact
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-5">
+
+    <h1>Contact Car Showcase</h1>
+
+    <p>
+      Have a question about a vehicle?
+      Send us a message!
+    </p>
+
+    <form id="contactForm">
+
+      <div class="row g-4">
+
+        <div class="col-12 col-md-6">
+          <label for="firstName">First Name</label>
+          <input
+            class="form-field"
+            type="text"
+            id="firstName"
+            required>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="lastName">Last Name</label>
+          <input
+            class="form-field"
+            type="text"
+            id="lastName"
+            required>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="email">Email</label>
+          <input
+            class="form-field"
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+            required>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="interest">Vehicle Interest</label>
+
+          <select
+            class="form-control"
+            id="interest"
+            required>
+
+            <option value="">
+              Choose a category
+            </option>
+
+            <option value="sedan">Sedans</option>
+            <option value="suv">SUVs</option>
+            <option value="sports">Sports Cars</option>
+
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label for="message">Message</label>
+
+          <textarea
+            class="form-field"
+            id="message"
+            rows="5"
+            required></textarea>
+        </div>
+
+        <div class="col-12">
+          <label for="consent">
+            <input
+              type="checkbox"
+              id="consent"
+              required>
+            I agree to be contacted about my inquiry.
+          </label>
+        </div>
+
+        <div class="col-12">
+          <button
+            class="btn btn-primary"
+            type="submit">
+            Send Message
+          </button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </main>
+
+  <footer class="container py-4">
+    <p>
+      &copy; 2026 Car Showcase.
+      Created for CCT360 Lab 6.
+    </p>
+  </footer>
+
+  <script>
+    // Mobile hamburger menu
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuButton.addEventListener("click", function () {
+      const isOpen = mobileMenu.classList.toggle("show");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+    });
+
+    // Contact form validation and confirmation
+    const contactForm = document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      alert("Message submitted successfully!");
+
+      contactForm.reset();
+    });
+  </script>
+
+</body>
+</html>

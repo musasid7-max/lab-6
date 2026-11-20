@@ -1,0 +1,48 @@
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.carousel-controls button {
+  position: static;
+  width: 55px;
+  height: 45px;
+  background-color: #333;
+  border: 1px solid #777;
+  border-radius: 8px;
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 25px;
+  height: 25px;
+}
+
+#featuredCars .carousel-item img {
+  width: 100%;
+  height: 450px !important;
+  object-fit: cover;
+}
+
+#featuredCars .carousel-inner {
+  height: 450px !important;
+}
+
+#featuredCars .carousel-controls {
+  margin-top: 12px;
+}
+
+/* Independent carousel slide visibility */
+#featuredCars .carousel-inner .carousel-item {
+  display: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+#featuredCars .carousel-inner .carousel-item.active {
+  display: block !important;
+}
