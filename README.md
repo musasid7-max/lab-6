@@ -30,3 +30,16 @@ The website was tested on desktop and mobile screen sizes.
 - Mobile navigation opens and closes.
 - Contact form validates required fields.
 
+
+## Project Structure
+
+- `index.html` — Homepage, carousel, and car gallery
+- `contact.html` — Contact form
+- `css/bootstrap.min.css` — Bootstrap styles
+- `css/style.css` — Custom carousel styling
+- `js/bootstrap.bundle.min.js` — Bootstrap JavaScript
+- `images/` — Vehicle images
+
+## Technologies Used
+
+HTML5, CSS3, Bootstrap, and JavaScript.
